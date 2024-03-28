@@ -1,11 +1,5 @@
 alert("Seja bem vinda(o) ao Habbo Hotel");
 var nome = transformarMaiuscula(prompt("Informe seu nome:"));
-var quartos = [];
-var nomeHospede = [];
-var count = 0;
-var valorTotal = [];
-var dias = [];
-var valor;
 var confirmar;
 var sair = false;
 do{
