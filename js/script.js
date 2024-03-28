@@ -13,7 +13,7 @@ do{
 }while(senha != 2678);
 
 do{
-    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - ");
+    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?");
     switch(escolha){
         case "1":
             var quartos = [];
@@ -64,6 +64,17 @@ do{
             }while(confirmar);
             break;
         case "2":
+            var valor;
+            do{
+                valor = parseFloat(prompt("Adicione o valor da reserva: "));
+                if(isNaN(valor))
+                    alert("adicione um numero");
+                else if(valor <= 0)
+                    alert("o valor informado não pode ser negativo");
+            }while(isNaN(valor) || valor <= 0);
+            do{
+                
+            }while(entrada !== "PARE")
             break;
         case "3":
             break;
