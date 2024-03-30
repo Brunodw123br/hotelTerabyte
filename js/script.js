@@ -13,7 +13,7 @@ do{
 }while(senha != 2678);
 
 do{
-    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?\n3 - com \"S\" ou com\"Z\"?\n4 - que horas voce pode?");
+    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?\n3 - com \"S\" ou com\"Z\"?\n4 - que horas voce pode?\n5 - Álcool ou gasolina?\n6 - Ar puro, finalmente\n 7 - Sair");
     switch(escolha){
         case "1":
             var quartos = [], nomeHospede = [], count = 0, valorTotal = [], dias = [], valor;
@@ -100,7 +100,7 @@ do{
         case "3":
             var hospedes = [], escolha = "", hospede = "";
             do{
-                escolha = prompt("Faça sua escolha \n1 - cadastrar hospedes\n2 - pesquisar hospede\n3 - listar hospedes\n4 - sair");
+                escolha = prompt("Faça sua escolha \n1 - cadastrar hospedes\n2 - pesquisar hospede\n3 - listar hospedes\n4 - sair\n5 - Álcool ou gasolina?\n6 - Ar puro, finalmente\n7 - sair");
                 switch(escolha){
                     case "1":
                         if(hospedes.length < 15){
@@ -239,8 +239,54 @@ do{
                 alert("reserva não efetuada, voltando ao menu do sistema")
             break;
         case "5":
+            var postoWayneAlcool = 0, postoWayneGasolina = 0, postoStarkGasolina = 0, postoStarkAlcool = 0, diferenca = 0;
+            do{
+                postoWayneAlcool = parseFloat(prompt("adicione o valor do álcool no posto Wayne Oil"));
+                if(isNaN(postoWayneAlcool))
+                    alert("porfavor informe em numero");
+                else if(postoWayneAlcool <= 0)
+                    alert("valor informado não poder igual ou menor a 0");
+            }while(isNaN(postoWayneAlcool) || postoWayneAlcool <= 0);
+            do{
+                postoWayneGasolina = parseFloat(prompt("adicione o valor da gasolina no posto Wayne Oil"));
+                if(isNaN(postoWayneGasolina))
+                    alert("porfavor informe em numero");
+                else if(postoWayneGasolina <= 0)
+                    alert("valor informado não poder igual ou menor a 0");
+            }while(isNaN(postoWayneGasolina) || postoWayneGasolina <= 0);
+            do{
+                postoStarkAlcool = parseFloat(prompt("adicione o valor do álcool no posto Stark Petrol"));
+                if(isNaN(postoStarkAlcool))
+                    alert("porfavor informe em numero");
+                else if(postoStarkAlcool <= 0)
+                    alert("valor informado não poder igual ou menor a 0");
+            }while(isNaN(postoStarkAlcool) || postoStarkAlcool <= 0);
+            do{
+                postoStarkGasolina = parseFloat(prompt("adicione o valor do gasolina no posto Stark Petrol"));
+                if(isNaN(postoStarkGasolina))
+                    alert("porfavor informe em numero");
+                else if(postoStarkGasolina <= 0)
+                    alert("valor informado não poder igual ou menor a 0");
+            }while(isNaN(postoStarkGasolina) || postoStarkGasolina <= 0);
+            if(postoWayneGasolina <= postoStarkGasolina){
+                diferenca = postoWayneGasolina - postoWayneGasolina * 0.3;
+                if(postoWayneAlcool <= diferenca)
+                    alert(nome + ", é mais barato abastecer com álcool no posto Wayne Oil");
+                else
+                    alert(nome + ", é mais barato abastecer com gasolina no posto Wayne Oil");
+            }else{
+                diferenca = postoStarkGasolina - postoStarkGasolina * 0.3;
+                if(postoStarkAlcool < diferenca)
+                    alert(nome + ", é mais barato abastecer com álcool no posto Stark Petrol");
+                else
+                    alert(nome + ", é mais barato abastecer com gasolina no posto Stark Petrol");
+            }
             break;
         case "6":
+            break;
+        case "7":
+            alert(nome + ", foi um prazer ter você no nosso Hotel, esperamos que nos utilize novamente em algum outro momento\n\natt: equipe do Habbo Hotel")
+            window.close();
             break;
         default:
             alert("ecolha invalida, por favor selecione um dos valore informados")
