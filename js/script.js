@@ -64,17 +64,43 @@ do{
             }while(confirmar);
             break;
         case "2":
-            var valor;
+            var valor = 0, gratuidade = 0, meia = 0, somaPagantes = 0, hospede = "", hospedeContagem = 0;
             do{
                 valor = parseFloat(prompt("Adicione o valor da reserva: "));
                 if(isNaN(valor))
                     alert("adicione um numero");
                 else if(valor <= 0)
-                    alert("o valor informado não pode ser negativo");
+                    alert("o valor informado não pode ser negativo ou zerado");
             }while(isNaN(valor) || valor <= 0);
             do{
-                
-            }while(entrada !== "PARE")
+                hospede = transformarMaiuscula(prompt("informe o nome do hospede:(digite PARE para sair da função)"));
+                if(hospede === "")
+                    alert("não é permitido deixar o campo vazio");
+                else if(hospede == "PARE")
+                    break;
+                else{
+                    do{
+                        idade = parseInt(prompt("adicione a idade do hospede"));
+                        if(isNaN(idade))
+                            alert("idade invalida")
+                    }while(idade <= 0 || isNaN(idade))
+                    hospedeContagem += 1;
+                    if(idade <= 6){
+                        gratuidade += 1;
+                        alert(hospede + " cadastrada(o) com sucesso. " + hospede + " possui gratuidade");
+                    }
+                    else if(idade >= 60){
+                        meia += 1;
+                        somaPagantes += (valor/2);
+                        alert(hospede + " cadastrada(o) com sucesso. " + hospede + " pagará meia");
+                    }
+                    else{
+                        somaPagantes += valor;
+                        alert(hospede + " cadastrada(o) com sucesso.");
+                    }
+                }
+            }while(hospede !== "PARE" || hospede === "");
+            alert(nome + ", o valor total das hospedagens é de " + somaPagantes + "R$. possuindo " + hospedeContagem + " hospedes, onde " + meia + " pagam meia e " + gratuidade + " tem gratuidade");
             break;
         case "3":
             break;
