@@ -13,7 +13,7 @@ do{
 }while(senha != 2678);
 
 do{
-    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?");
+    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?\n3 - com \"S\" ou com\"Z\"?");
     switch(escolha){
         case "1":
             var quartos = [];
@@ -103,6 +103,41 @@ do{
             alert(nome + ", o valor total das hospedagens é de " + somaPagantes + "R$. possuindo " + hospedeContagem + " hospedes, onde " + meia + " pagam meia e " + gratuidade + " tem gratuidade");
             break;
         case "3":
+            var hospedes = [], escolha = "", hospede = "";
+            do{
+                escolha = prompt("Faça sua escolha \n1 - cadastrar hospedes\n2 - pesquisar hospede\n3 - listar hospedes\n4 - sair");
+                switch(escolha){
+                    case "1":
+                        if(hospedes.length < 15){
+                            hospede = "\n";
+                            do{
+                                hospede += transformarMaiuscula(prompt("adicione o nome do hospede"));
+                                if(hospede === "")
+                                    alert("por favor preencha o campo")
+                            }while(hospede === "");
+                            hospedes.push(hospede);
+                            alert("hospede cadastrado com sucesso")
+                        }else
+                            alert("o limite de hospedes foi atingido")
+                        break;
+                    case "2":
+                        hospede = "\n";
+                        hospede += transformarMaiuscula(prompt("informe o hospede para busca"));
+                        if(hospedes.includes(hospede))
+                            alert(hospede + " foi encontrada(o) no sistema");
+                        else
+                            alert("hospede não cadastrado no sistema")
+                        break;
+                    case "3":
+                        alert("HOSPEDES CADASTRADOS" + hospedes);
+                        break;
+                    case "4":
+                        break;
+                    default:
+                        alert("por favor selecione uma das opções");
+                        break;
+                }
+            }while(escolha !== "4")
             break;
         case "4":
             break;
