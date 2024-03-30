@@ -13,15 +13,10 @@ do{
 }while(senha != 2678);
 
 do{
-    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?\n3 - com \"S\" ou com\"Z\"?");
+    var escolha = prompt("Funções do Habbo Hotel\n1 - Quanto quartos são?\n2 - Como soletra?\n3 - com \"S\" ou com\"Z\"?\n4 - que horas voce pode?");
     switch(escolha){
         case "1":
-            var quartos = [];
-            var nomeHospede = [];
-            var count = 0;
-            var valorTotal = [];
-            var dias = [];
-            var valor;
+            var quartos = [], nomeHospede = [], count = 0, valorTotal = [], dias = [], valor;
             do{
                 do{
                     valor = parseFloat(prompt("informe o valor da diaria: "));
@@ -41,7 +36,7 @@ do{
                 alert("o valor de " + dias[count] + " diarias é de " + valorTotal[count] + "R$")
                 do{
                     nomeHospede[count] = transformarMaiuscula(prompt("qual o nome do hospede?"));
-                    if(nomeHospede[count] === "");
+                    if(nomeHospede[count] === "")
                         alert("por favor não deixe o campo vazio");
                 }while(nomeHospede[count] === "");  
                 do{
@@ -140,6 +135,108 @@ do{
             }while(escolha !== "4")
             break;
         case "4":
+            var convidados = 0, cadeiras = 0, diaSemana = "", horario = 0, nomeEmpresa = "", garcom = 0, limiteEvento = 0, horaEvento = 0, valorGarcom = 0, cafe = 0, agua = 0, salgado = 0, valorCafe = 0, valorAgua = 0, valorsalgado = 0, valorBuffet, count = 0, confirmar = null, somaGastos = 0, auditorio = "";
+            do{
+                convidados = parseInt(prompt("adicione a quantidade de convidados"));
+                if(isNaN(convidados))
+                    alert("por favor aidicione numeros");
+                else if(convidados <=0)
+                    alert("quantidade de convidados invalida");
+                else if(convidados > 350)
+                    alert("quantidade de convidade superior a quantidade permitida")
+                else if(convidados <= 150){
+                    auditorio = "laranja";
+                    alert("use o auditório " + auditorio);
+                    alert("agora vamos agendar o evento");
+                }else if(convidados > 150 && convidados <= 220){
+                    cadeiras = convidados - 150;
+                    auditorio = "laranja";
+                    alert("use o auditório " + auditorio + ".(adicione " + cadeiras + " cadeiras)");
+                    alert("agora vamos agendar o evento");
+                }
+                else{
+                    auditorio = "colorado";
+                    alert("use o auditório " + auditorio);
+                    alert("agora vamos agendar o evento");
+                }
+            }while(isNaN(convidados) || convidados <= 0 || convidados > 350);
+            do{
+                diaSemana = transformarMaiuscula(prompt("em qual dia da semana ocorrera o evento?(não informe o -feira. exemplo: \" terca\")"));
+                switch(diaSemana){
+                    case "Segunda":
+                    case "Terca":
+                    case "Terça":
+                    case "Quarta":
+                    case "Quinta":
+                    case "Sexta":
+                        limiteEvento = 23;
+                        do{
+                            horario = parseInt(prompt("informe o horário do evento"))
+                            if(isNaN(horario))
+                                alert("informe o horario em numeros");
+                            else if(horario < 0 || horario > 24)
+                                alert("horario inexistente")
+                            else if(horario < 7 || horario > 23)
+                                alert("não funcionamos nesse horario");
+                        }while(horario < 7 || horario > 23 || isNaN(horario));
+                        do{
+                            nomeEmpresa = prompt("qual o nome da empresa?");
+                        }while(nomeEmpresa === "");
+                        count = 1;
+                        alert("auditório reservado para " + nomeEmpresa + ". " + diaSemana + " às " + horario + "h")
+                        break;
+                    case "Sabado":
+                    case "Sábado":
+                    case "Domingo":
+                        limiteEvento = 15;
+                        do{
+                            horario = parseInt(prompt("informe o horário do evento"))
+                            if(isNaN(horario))
+                                alert("informe o horario em numeros");
+                            else if(horario < 0 || horario > 24)
+                                alert("horario inexistente")
+                            else if(horario < 7 || horario > 15)
+                                alert("não funcionamos nesse horario");
+                        }while(horario < 7 || horario > 15 || isNaN(horario));
+                        do{
+                            nomeEmpresa = prompt("qual o nome da empresa?");
+                        }while(nomeEmpresa === "");
+                        alert("auditório reservado para " + nomeEmpresa + ". " + diaSemana + " às " + horario + "h")
+                        count = 1;
+                        break;
+                    default:
+                        alert("dia da semana informado não existe");                
+                }
+            }while(count == 0)
+            do{
+                horaEvento = parseInt(prompt("qual será a duração do evento em horas?"));
+                var limite = horario + horaEvento;
+                if(isNaN(horaEvento))
+                    alert("adicione a hora em numero");
+                else if(horaEvento <= 0)
+                    alert("quantidade de horas invalidas");
+                else if(limite > limiteEvento)
+                    alert("não trabalhamos mais que o nosso horário");
+            }while(isNaN(horaEvento) || horaEvento <= 0 || limite > limiteEvento);
+            garcom = Math.ceil(convidados / 12);
+            garcom += Math.ceil(horaEvento / 2);
+            valorGarcom = horaEvento * 10.50 * garcom;
+            alert("serão necessarios " + garcom + " garçons, o custo será de " + valorGarcom + "R$");
+            alert("agora vamos calcular o buffet");
+            cafe = Math.ceil(0.2 * convidados);
+            agua = Math.ceil(0.5 * convidados);
+            salgado = Math.ceil(7 * convidados / 100) * 100;
+            valorCafe = cafe * 0.8;
+            valorAgua = agua * 0.4;
+            valorsalgado = salgado / 100 * 34;
+            valorBuffet = valorAgua + valorCafe + valorsalgado;
+            valorTotal = valorGarcom + valorBuffet;
+            alert("o evento precisará de " + cafe + "L de café, " + agua + "L de água e " + salgado + " unidades de salgados");
+            confirmar = confirm("DADOS PARA FINALIZAR RESERVA\n Evento no Auditório: " + auditorio + "\nNome da Empresa: " + nomeEmpresa + "\nData: " + diaSemana + ", " + horario + "h às " + limite + "\nDuração do Evento: " + horaEvento + "h\nQuantidade de Garçom: " + garcom + "\nQuantidade de Convidados" + convidados + "\n\n Custo dos garçons: R$ " + valorGarcom + "\nCusto do buffet: R$ " + valorBuffet + "\n\nValor total do Evento: " + valorTotal);
+            if(confirmar)
+                alert(nome + ", reserva efetuada com sucesso");
+            else
+                alert("reserva não efetuada, voltando ao menu do sistema")
             break;
         case "5":
             break;
