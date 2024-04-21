@@ -1,5 +1,5 @@
 //variaveis utilizadas para funcionar hotel
-var nome;
+var nome = "", senha = "";
 //variaveis utilizadas no exercicio quantos quartos são - 1
 var quartos = [], nomeHospedes = "", dia = 0, valor = 0, valorTotal = 0, quarto = 0;
 //variaveis utilizadas no exercicio como soletra- 2
@@ -19,7 +19,7 @@ var desconto = 0, confirmar, barato = Infinity;
 function entradaHotel(){
     alert("Seja bem vinda(o) ao Habbo Hotel");
     nomeInicio();
-    senha();
+    senhaInicio();
     funcoes();
 }
 
@@ -31,17 +31,17 @@ function nomeInicio(){
     }
 }
     
-function senha(){
-    var senha = prompt("Olá, " + nome + " informe sua senha");
+function senhaInicio(){
+    senha = prompt("Olá, " + nome + " informe sua senha");
     if(isNaN(senha)){
         alert("a senha deve ser numérica");
-        senha();
+        senhaInicio();
     }else if(senha.length > 4){
         alert("a senha possui somente 4 digítos");
-        senha();
+        senhaInicio();
     }else if(senha != 2678){
         alert("Senha errada, a senha é: 2678");
-        senha();
+        senhaInicio();
     }
 }
 
