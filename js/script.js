@@ -24,7 +24,7 @@ function entradaHotel(){
 }
 
 function nomeInicio(){
-    var nome = prompt("Informe seu nome:");
+    nome = prompt("Informe seu nome:");
     if(nome === ""){
         alert("campo não pode ficar vazio");
         nomeInicio();
