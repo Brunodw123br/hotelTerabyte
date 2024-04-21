@@ -16,6 +16,35 @@ var postoWayneAlcool = 0, postoWayneGasolina = 0, postoStarkGasolina = 0, postoS
 var empresas = "", empresa = "", valor = 0, valorFinal = 0, quantidade = 0, quantidadeMinima = 0;
 var desconto = 0, confirmar, barato = Infinity;
 
+function entradaHotel(){
+    alert("Seja bem vinda(o) ao Habbo Hotel");
+    nomeInicio();
+    senha();
+    funcoes();
+}
+
+function nomeInicio(){
+    var nome = prompt("Informe seu nome:");
+    if(nome === ""){
+        alert("campo não pode ficar vazio");
+        nomeInicio();
+    }
+}
+    
+function senha(){
+    var senha = prompt("Olá, " + nome + " informe sua senha");
+    if(isNaN(senha)){
+        alert("a senha deve ser numérica");
+        senha();
+    }else if(senha.length > 4){
+        alert("a senha possui somente 4 digítos");
+        senha();
+    }else if(senha != 2678){
+        alert("Senha errada, a senha é: 2678");
+        senha();
+    }
+}
+
 function funcoes() {
     /*essa é uma estrutura de prompt unica, o /n serve para dar a quebra de linhas
     e não ficar em uma linha única, só tá escrita com concatenação para melhor visibilidade
